@@ -12,6 +12,7 @@ export const createTaskController = async (req, res) => {
         const task = await createTask(userId, title, description);
 
         return res.status(200).json({
+            status: true,
             task: task,
             message: "Task created successfully"
         });
@@ -26,6 +27,7 @@ export const getTasksController = async (req, res) => {
         const tasks = await getTasks(userId);
 
         return res.status(200).json({
+            status: true,
             tasks: tasks,
             message: "Tasks fetched successfully"
         });
@@ -44,13 +46,14 @@ export const updateTaskController = async (req, res) => {
             return res.status(401).json({ message: "Unauthorized" });
         }
 
-        if (!title || !description || !status) {
+        if (!title || !description ) {
             return res.status(400).json({ message: "Please fill all fields" });
         }
 
         const task = await updateTask(taskId, title, description, status);
 
         return res.status(200).json({
+            status: true,
             task: task,
             message: "Task updated successfully"
         });
@@ -71,6 +74,7 @@ export const deleteTaskController = async (req, res) => {
         const task = await deleteTask(taskId);
 
         return res.status(200).json({
+            status: true,
             task: task,
             message: "Task deleted successfully"
         });

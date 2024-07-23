@@ -23,6 +23,7 @@ export const getTasks = async (userId) => {
 }
 
 export const updateTask = async (taskId, title, description, status) => {
+    console.log(taskId, title, description, status);
     try {
         const task = await Task.findById(taskId);
         if (!task) {
@@ -31,7 +32,10 @@ export const updateTask = async (taskId, title, description, status) => {
 
         task.title = title;
         task.description = description;
+        if(status){
         task.status = status;
+    }
+    console.log(task);
 
         await task.save();
         return task;
